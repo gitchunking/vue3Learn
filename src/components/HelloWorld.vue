@@ -1,19 +1,27 @@
 <script setup lang="ts">
-import { ref,Ref } from 'vue'
+import { ref, Ref, watch, reactive, computed } from "vue";
+const emits = defineEmits(["update:modelValue"]);
+const props = defineProps<{ obj: Object }>();
+import child1 from "./child1.vue";
+import child2 from "./child2.vue";
 
-defineProps<{ msg: string }>()
-
-const childObj:Ref = ref({
-  text:'childObj'
-})
-defineExpose({childObj})
+const _obj = computed(() => props.obj);
+const coputedObj = computed({
+  get() {
+    return { a: { b: 1 } };
+  },
+  set(newV) {
+    console.log(newV,'newvvvvv')
+  },
+});
+coputedObj.value =  1
+console.log(coputedObj.value.a.b)
+// defineExpose({ childObj });
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-  <h1>{{ childObj.text }}</h1>
-
-  
+  <!-- <child1></child1>
+  <child2></child2> -->
 </template>
 
 <style scoped>
