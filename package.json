@@ -3,13 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --open",
-    "build": "vue-tsc --noEmit && vite build",
+    "dev": "vite --force",
+    "build": "vite build",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "element-plus": "^2.6.2",
+    "l-watermark": "^2.1.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.2",
     "vue-router": "^4.3.0"
@@ -22,6 +24,7 @@
     "cz-customizable": "^7.0.0",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
+    "patch-package": "^8.0.0",
     "sass": "^1.72.0",
     "sass-loader": "^14.1.1",
     "typescript": "^4.5.4",

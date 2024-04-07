@@ -1,27 +1,44 @@
 <script setup lang="ts">
-import { ref, Ref, watch, reactive, computed } from "vue";
+import { ref, Ref, watch, reactive, computed, onMounted } from "vue";
 const emits = defineEmits(["update:modelValue"]);
 const props = defineProps<{ obj: Object }>();
 import child1 from "./child1.vue";
 import child2 from "./child2.vue";
-
-const _obj = computed(() => props.obj);
-const coputedObj = computed({
+import WaterMark from "l-watermark";
+WaterMark.page({
+  targe: document.body,
+  text: "王鑫",
+  secret: true,
+  color: "rgba(0, 0, 0, 0.4)",
+  fontSize: 24,
+});
+// const _obj = computed(() => props.obj);
+const computedObj = computed({
   get() {
     return { a: { b: 1 } };
   },
   set(newV) {
-    console.log(newV,'newvvvvv')
+    console.log(newV, "newvvvvv");
   },
 });
-coputedObj.value =  1
-console.log(coputedObj.value.a.b)
+computedObj.value = 1;
+const computedData = () => {
+  return refNum.value;
+};
+computedData.value = 2
+const refNum = ref(1);
+onMounted(() => {
+  console.log("hhhhh");
+});
+console.log(refNum);
+console.log(computedObj.value.a.b);
 // defineExpose({ childObj });
+function setWaterMarker() {}
 </script>
 
 <template>
-  <!-- <child1></child1>
-  <child2></child2> -->
+  <!-- <child1 v-model="computedObj"></child1>
+  <child2 v-model="computedObj"></child2> -->
 </template>
 
 <style scoped>
