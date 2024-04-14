@@ -1,10 +1,20 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-
+import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    // vite 中的别名解析
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
   plugins: [vue()],
   build: {
     sourcemap: true,
+  },
+  test: {
+    include: ["test/**/*.test.ts"],
+    environment: "jsdom",
   },
 });

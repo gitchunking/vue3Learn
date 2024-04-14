@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Stepper.vue 组件单元测试 > should render 1`] = `
+"<div>
+  <!-- tid 属性用于测试，可以快速获取 DOM --><button tid="dec-btn">-</button><span>10</span><button tid="inc-btn">+</button>
+</div>"
+`;
