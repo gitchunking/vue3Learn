@@ -4,14 +4,6 @@ const emits = defineEmits(["update:modelValue"]);
 const props = defineProps<{ obj: Object }>();
 import child1 from "./child1.vue";
 import child2 from "./child2.vue";
-import WaterMark from "l-watermark";
-WaterMark.page({
-  targe: document.body,
-  text: "王鑫",
-  secret: true,
-  color: "rgba(0, 0, 0, 0.4)",
-  fontSize: 24,
-});
 // const _obj = computed(() => props.obj);
 const computedObj = computed({
   get() {
@@ -25,7 +17,7 @@ computedObj.value = 1;
 const computedData = () => {
   return refNum.value;
 };
-computedData.value = 2
+computedData.value = 2;
 const refNum = ref(1);
 onMounted(() => {
   console.log("hhhhh");
@@ -37,6 +29,7 @@ function setWaterMarker() {}
 </script>
 
 <template>
+  <div></div>
   <!-- <child1 v-model="computedObj"></child1>
   <child2 v-model="computedObj"></child2> -->
 </template>

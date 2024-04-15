@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { Ref, ref, onMounted, computed, ComputedRef } from "vue";
+import {
+  Ref,
+  ref,
+  onMounted,
+  computed,
+  ComputedRef,
+  watch,
+  reactive,
+} from "vue";
 import { Plus } from "@element-plus/icons-vue";
 import HelloWorld from "../components/HelloWorld.vue";
 const ico = "/favicon.ico";
@@ -12,6 +20,45 @@ const obj: Ref = ref({
     [1, 2],
   ],
 });
+const refNum = ref(1);
+const refObj = ref({ a: { b: { c: 1 } } });
+const reactiveNum = reactive({ a: 1 });
+const reactiveObj = reactive({ a: { b: { c: 1 } } });
+
+watch(refNum.value, () => {
+  console.log("refNum.value"); //不打印
+});
+watch(
+  () => refNum.value,
+  () => {
+    console.log("() => refNum.value"); //打印
+  }
+);
+watch(refNum, () => {
+  console.log("refNum"); //打印
+});
+watch(reactiveNum.a, () => {
+  console.log("reactiveNum"); //不打印
+});
+watch(
+  () => reactiveNum.a,
+  () => {
+    console.log("() => reactiveNum.a"); //打印
+  }
+);
+console.log(12345)
+// watch(refObj.value, () => {
+//   console.log("watch");
+// });
+watch(reactiveObj, () => {
+  console.log("watchreactiveObj");
+});
+setTimeout(() => {
+  refNum.value = 2;
+  refObj.value.a.b.c = 2;
+  reactiveNum.a = 2;
+  reactiveObj.a.b.c = 2;
+}, 1000);
 // const testC = computed({
 //   get: () => {
 //     return obj.value.a.b[0].c;
