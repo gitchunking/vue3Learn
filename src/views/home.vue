@@ -34,7 +34,7 @@ watch(reactiveObj, () => {
   console.log(reactiveObj.a.b.c, "reactiveObj.a.b.c"); //打印
 });
 setTimeout(() => {
-  refObj.value.a.b.c = 2;
+  refObj.value.a.b.c = 2222222;
   reactiveObj.a.b.c = 2;
 }, 2000);
 provide("testObj", refObj);
